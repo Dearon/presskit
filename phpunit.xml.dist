@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit backupGlobals="false" colors="true" bootstrap="./test/bootstrap.php">
+    <testsuites>
+        <testsuite name="Presskit Test Suite">
+            <directory suffix="Test.php">./test</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory>./Presskit/</directory>
+        </whitelist>
+    </filter>
+</phpunit>
