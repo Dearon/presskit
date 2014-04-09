@@ -20,11 +20,11 @@ $fullValidArray = array(
     'social' => array(
         array(
             'name' => 'twitter.com/MyCompanyName',
-            'link' => 'twitter.com/MyCompanyName',
+            'link' => 'http://twitter.com/MyCompanyName',
         ),
         array(
             'name' => 'facebook.com/MyCompanyName',
-            'link' => 'facebook.com/MyCompanyName',
+            'link' => 'http://facebook.com/MyCompanyName',
         ),
         array(
             'name' => 'Skype',

@@ -9,11 +9,17 @@ class Presskit_ValidationTest extends PHPUnit_Framework_Testcase
         require dirname(__FILE__).'/../../fixtures/parser/fullValid.php';
         require dirname(__FILE__).'/../../fixtures/parser/minimalValid.php';
         require dirname(__FILE__).'/../../fixtures/parser/invalid.php';
+        require dirname(__FILE__).'/../../fixtures/validation/invalidWebsite.php';
+        require dirname(__FILE__).'/../../fixtures/validation/invalidPressContact.php';
+        require dirname(__FILE__).'/../../fixtures/validation/invalidSocialWebsite.php';
 
         $this->validation = new \Presskit\Validation();
         $this->fullValidArray = $fullValidArray;
         $this->minimalValidArray = $minimalValidArray;
         $this->invalidArray = $invalidArray;
+        $this->invalidWebsiteArray = $invalidWebsiteArray;
+        $this->invalidPressContactArray = $invalidPressContactArray;
+        $this->invalidSocialWebsiteArray = $invalidSocialWebsiteArray;
     }
 
     public function testNoInput()
@@ -42,5 +48,23 @@ class Presskit_ValidationTest extends PHPUnit_Framework_Testcase
     public function testFullValidArray()
     {
         $this->assertEquals($this->fullValidArray, $this->validation->validate($this->fullValidArray));
+    }
+
+    public function testInvalidWebsite()
+    {
+        $this->setExpectedException('InvalidArgumentException', 'The website needs to be a valid url');
+        $this->validation->validate($this->invalidWebsiteArray);
+    }
+
+    public function testInvalidPressContact()
+    {
+        $this->setExpectedException('InvalidArgumentException', 'The press contact needs to be a valid email address');
+        $this->validation->validate($this->invalidPressContactArray);
+    }
+
+    public function testInvalidSocialWebsite()
+    {
+        $this->setExpectedException('InvalidArgumentException', 'The social links need to be a valid urls');
+        $this->validation->validate($this->invalidSocialWebsiteArray);
     }
 }

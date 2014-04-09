@@ -19,11 +19,11 @@
 	<socials>
 		<social>
 			<name>twitter.com/MyCompanyName</name>
-			<link>twitter.com/MyCompanyName</link>
+			<link>http://twitter.com/MyCompanyName</link>
 		</social>
 		<social>
 			<name>facebook.com/MyCompanyName</name>
-			<link>facebook.com/MyCompanyName</link>
+			<link>http://facebook.com/MyCompanyName</link>
 		</social>
 		<social>
 			<name>Skype</name>
