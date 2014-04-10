@@ -28,6 +28,13 @@ class Presskit_FormatTest extends PHPUnit_Framework_Testcase
         $this->assertEquals($expected, $this->format->format($input));
     }
 
+    public function testAdditionalsLink()
+    {
+        $input = array('additionals' => array(array('description' => 'Description', 'name' => 'Name', 'website' => 'Website', 'link' => 'http://www.website.com/')));
+        $expected = array('additionals' => array(array('description' => 'Description', 'name' => 'Name', 'website' => 'Website', 'link' => 'http://www.website.com/', 'link-name' => 'website.com')));
+        $this->assertEquals($expected, $this->format->format($input));
+    }
+
     public function testTrailers()
     {
         $input = array(

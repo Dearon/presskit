@@ -20,6 +20,12 @@ class Format
             $data['website-name'] = $this->url($data['website']);
         }
 
+        if (array_key_exists('additionals', $data)) {
+            foreach ($data['additionals'] as &$additional) {
+                $additional['link-name'] = $this->url($additional['link']);
+            }
+        }
+
         if (array_key_exists('trailers', $data)) {
             $data['trailers'] = $this->trailers($data['trailers']);
         }
