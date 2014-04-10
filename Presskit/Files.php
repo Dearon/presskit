@@ -4,19 +4,19 @@ namespace Presskit;
 
 use \InvalidArgumentException;
 
-class Projects
+class Files
 {
-    private $directory;
+    private $baseDirectory;
 
     public function __construct($directory = '')
     {
         if ($directory === '') {
             $directory = dirname(__FILE__).'/../';
         }
-        $this->directory = $directory;
+        $this->baseDirectory = $directory;
     }
 
-    public function find()
+    public function projects()
     {
         $ignore = array(
             '.',
@@ -30,13 +30,13 @@ class Projects
             'vendor',
         );
 
-        $directories = scandir($this->directory);
+        $directories = scandir($this->baseDirectory);
         $directories = array_diff($directories, $ignore);
 
         $projects = array();
 
         foreach ($directories as $directory) {
-            if (is_dir($this->directory . $directory) && file_exists($this->directory . $directory . '/data.xml')) {
+            if (is_dir($this->baseDirectory . $directory) && file_exists($this->baseDirectory . $directory . '/data.xml')) {
                 $projects[] = array('path' => $directory, 'name' => ucwords(str_replace('_', ' ', $directory)));
             }
         }

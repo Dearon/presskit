@@ -1,16 +1,16 @@
 <?php
 
-class Presskit_ProjectsTest extends PHPUnit_Framework_Testcase
+class Presskit_FilesTest extends PHPUnit_Framework_Testcase
 {
-    protected $projects;
+    protected $files;
 
     public function setUp()
     {
         $directory = dirname(__FILE__).'/../../fixtures/projects/';
-        $this->projects = new \Presskit\projects($directory);
+        $this->files = new \Presskit\Files($directory);
     }
 
-    public function testDirectories()
+    public function testProjects()
     {
         $expected = array(
             array(
@@ -22,6 +22,6 @@ class Presskit_ProjectsTest extends PHPUnit_Framework_Testcase
                 'name' => 'Game 1',
             ),
         );
-        $this->assertEquals($expected, $this->projects->find());
+        $this->assertEquals($expected, $this->files->projects());
     }
 }
