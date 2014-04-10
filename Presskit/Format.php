@@ -20,6 +20,10 @@ class Format
             $data['website-name'] = $this->url($data['website']);
         }
 
+        if (array_key_exists('trailers', $data)) {
+            $data['trailers'] = $this->trailers($data['trailers']);
+        }
+
         return $data;
     }
 
@@ -34,5 +38,24 @@ class Format
         }
 
         return $name;
+    }
+
+    private function trailers($trailers)
+    {
+        foreach ($trailers as &$trailer) {
+            if ($trailer['type'] == 'youtube') {
+                $trailer['type'] = ucfirst($trailer['type']);
+                $trailer['url'] = 'http://www.youtube.com/watch?v=' . $trailer['id'];
+                $trailer['embedded'] = '<iframe src="//www.youtube.com/embed/' . $trailer['id'] . '" frameborder="0" allowfullscreen></iframe>';
+            }
+
+            if ($trailer['type'] == 'vimeo') {
+                $trailer['type'] = ucfirst($trailer['type']);
+                $trailer['url'] = 'http://www.vimeo.com/' . $trailer['id'];
+                $trailer['embedded'] = '<iframe src="http://player.vimeo.com/video/' . $trailer['id'] . '" frameborder="0" allowfullscreen></iframe>';
+            }
+        }
+
+        return $trailers;
     }
 }
