@@ -46,6 +46,14 @@ class Validation
             }
         }
 
+        if (array_key_exists('quotes', $data)) {
+            foreach ($data['quotes'] as $quote) {
+                if (! filter_var($quote['link'], FILTER_VALIDATE_URL)) {
+                    throw new InvalidArgumentException('The quote links need to be a valid urls');
+                }
+            }
+        }
+
         return $data;
     }
 }

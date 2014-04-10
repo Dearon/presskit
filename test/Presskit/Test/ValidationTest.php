@@ -12,6 +12,7 @@ class Presskit_ValidationTest extends PHPUnit_Framework_Testcase
         require dirname(__FILE__).'/../../fixtures/validation/invalidWebsite.php';
         require dirname(__FILE__).'/../../fixtures/validation/invalidPressContact.php';
         require dirname(__FILE__).'/../../fixtures/validation/invalidSocialWebsite.php';
+        require dirname(__FILE__).'/../../fixtures/validation/invalidQuoteWebsite.php';
 
         $this->validation = new \Presskit\Validation();
         $this->fullValidArray = $fullValidArray;
@@ -20,6 +21,7 @@ class Presskit_ValidationTest extends PHPUnit_Framework_Testcase
         $this->invalidWebsiteArray = $invalidWebsiteArray;
         $this->invalidPressContactArray = $invalidPressContactArray;
         $this->invalidSocialWebsiteArray = $invalidSocialWebsiteArray;
+        $this->invalidQuoteWebsiteArray = $invalidQuoteWebsiteArray;
     }
 
     public function testNoInput()
@@ -66,5 +68,11 @@ class Presskit_ValidationTest extends PHPUnit_Framework_Testcase
     {
         $this->setExpectedException('InvalidArgumentException', 'The social links need to be a valid urls');
         $this->validation->validate($this->invalidSocialWebsiteArray);
+    }
+
+    public function testInvalidQuoteWebsite()
+    {
+        $this->setExpectedException('InvalidArgumentException', 'The quote links need to be a valid urls');
+        $this->validation->validate($this->invalidQuoteWebsiteArray);
     }
 }
