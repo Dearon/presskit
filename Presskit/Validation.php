@@ -62,6 +62,14 @@ class Validation
             }
         }
 
+        if (array_key_exists('credits', $data)) {
+            foreach($data['credits'] as $credit) {
+                if (! empty($credit['website']) && ! filter_var($credit['website'], FILTER_VALIDATE_URL)) {
+                    throw new InvalidArgumentException('The credit links need to be a valid urls');
+                }
+            }
+        }
+
         return $data;
     }
 }

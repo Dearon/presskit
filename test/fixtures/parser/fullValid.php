@@ -109,16 +109,17 @@ $fullValidArray = array(
         array(
             'person' => 'John Doe',
             'role' => 'Artist, Freelancer',
+            'website' => '',
         ),
         array(
             'person' => 'Oliver Twist',
             'role' => 'Artist, Freelancer',
-            'website' => 'www.olivertwist.com',
+            'website' => 'http://www.olivertwist.com',
         ),
         array(
             'person' => 'Jane Doette',
             'role' => 'Music, Freelancer',
-            'website' => 'www.olivertwist.com',
+            'website' => 'http://www.olivertwist.com',
         ),
     ),
     'contact' => array(

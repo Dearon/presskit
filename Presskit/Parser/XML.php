@@ -107,6 +107,8 @@ class XML
 
                 if (isset($credit->website)) {
                     $array['website'] = (string) $credit->website;
+                } else {
+                    $array['website'] = (string) '';
                 }
 
                 $data['credits'][] = $array;
