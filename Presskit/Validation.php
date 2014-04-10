@@ -54,6 +54,14 @@ class Validation
             }
         }
 
+        if (array_key_exists('additionals', $data)) {
+            foreach ($data['additionals'] as $additional) {
+                if (! filter_var($additional['link'], FILTER_VALIDATE_URL)) {
+                    throw new InvalidArgumentException('The additional links need to be a valid urls');
+                }
+            }
+        }
+
         return $data;
     }
 }
