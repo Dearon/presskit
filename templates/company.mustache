@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>{{ title }}</title>
+        <link href="{{ baseUrl }}/assets/css/uikit.gradient.min.css" rel="stylesheet" type="text/css">
+        <link href="{{ baseUrl }}/assets/css/style.css" rel="stylesheet" type="text/css">
+
+        {{# analytics }}
+            <!-- Google Analytics -->
+            <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', '{{ analytics }}', 'auto');
+            ga('send', 'pageview');
+            </script>
+            <!-- End Google Analytics -->
+        {{/ analytics }}
+    </head>
+    <body>
+        <div class="uk-container uk-container-center">
+            <div class="uk-grid">
+                <div id="navigation" class="uk-width-medium-1-4">
+                    <h1 class="nav-header">{{ title }}</h1>
+                    <a class="nav-header" href="{{ website }}">{{ website-name }}</a>
+
+                    <ul class="uk-nav uk-nav-side">
+                        <li><a href="#factsheet" id="m-factsheet">Factsheet</a></li>
+                        <li><a href="#description" id="m-description">Description</a></li>
+                        <li><a href="#history" id="m-history">History</a></li>
+                        <li><a href="#projects" id="m-projects">Projects</a></li>
+                        <li><a href="#trailers" id="m-trailers">Videos</a></li>
+                        <li><a href="#images" id="m-images">Images</a></li>
+                        <li><a href="#logo" id="m-logo">Logo & Icon</a></li>
+                        {{# awards.0 }}<li><a href="#awards" id="m-awards">Awards & Recognition</a></li>{{/ awards.0 }}
+                        {{# quotes.0 }}<li><a href="#quotes" id="m-quotes">Selected Articles</a></li>{{/ quotes.0 }}
+                        {{# additionals.0 }}<li><a href="#links" id="m-links">Additional Links</a></li>{{/ additionals.0 }}
+                        <li><a href="#credits" id="m-credits">Team</a></li>
+                        <li><a href="#contact" id="m-contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div id="content" class="uk-width-medium-3-4">
+                    <img src="{{ baseUrl }}/images/header.png" alt="Header images for {{ title }}" class="header">
+
+                    <div class="uk-grid">
+                        <div class="uk-width-medium-2-6">
+                            <h2 id="factsheet">Factsheet</h2>
+                            <p>
+                                <strong>Developer:</strong><br/>
+                                {{ title }}<br/>
+                                Based in {{ based-in }}
+                            </p>
+                            <p>
+                                <strong>Founding date:</strong><br/>
+                                {{ founding-date }}
+                            </p>
+                            <p>
+                                <strong>Website:</strong><br/>
+                                <a href="{{ website }}">{{ website-name }}</a>
+                            </p>
+                            <p>
+                                <strong>Press / Business Contact:</strong><br/>
+                                <a href="mailto:{{ press-contact }}">{{ press-contact }}</a>
+                            </p>
+                            {{# social.0 }}
+                                <p>
+                                    <strong>Social:</strong>
+                                    {{# social }}
+                                        <br/><a href="{{ link }}">{{ name }}</a>
+                                    {{/ social }}
+                                </p>
+                            {{/ social.0 }}
+                            {{# projects.0 }}
+                                <p>
+                                    <strong>Releases:</strong>
+                                    {{# projects }}
+                                        <br /><a href="{{ baseUrl }}/{{path }}">{{ name }}</a>
+                                    {{/ projects }}
+                                </p>
+                            {{/ projects.0 }}
+                            {{# address.0 }}
+                                <p>
+                                    <strong>Address:</strong>
+                                    {{# address }}
+                                        <br/>{{ . }}
+                                    {{/ address }}
+                                </p>
+                            {{/ address.0 }}
+                            <p>
+                                <strong>Phone:</strong><br/>
+                                {{ phone }}
+                            </p>
+                        </div>
+                        <div class="uk-width-medium-4-6">
+                            <h2 id="description">Description</h2>
+                            <p>{{ description }}</p>
+
+                            {{# history.0 }}
+                                <h2 id="history">History</h2>
+                                {{# history }}
+                                    <strong>{{ name }}</strong>
+                                    <p>{{ text }}</p>
+                                {{/ history }}
+                            {{/ history.0 }}
+
+                            {{# projects.0 }}
+                                <h2 id="projects">Projects</h2>
+                                <ul>
+                                    {{# projects }}
+                                        <li><a href="{{ baseUrl }}/{{path }}">{{ name }}</a></li>
+                                    {{/ projects }}
+                                </ul>
+                            {{/ projects.0 }}
+                        </div>
+                    </div>
+                    <hr>
+
+                    <h2 id="trailers">Videos</h2>
+                    {{# trailers.0 }}
+                        {{# trailers }}
+                            <p><strong>{{ name }}</strong> <a href="{{ url }}">{{ type }}</a><br />
+                            <div class="uk-responsive-width iframe-container">{{{ embedded }}}</div>
+                        {{/ trailers }}
+                    {{/ trailers.0 }}
+                    {{^ trailers.0 }}
+                        <p>There are currently no trailers available for {{ title }}. Check back later for more or <a href="#contact">contact us</a> for specific requests!
+                    {{/ trailers.0 }}
+                    <hr>
+
+                    <h2 id="images">Images</h2>
+                    {{# images.zip }}
+                        <a href="{{ baseUrl }}/{{ path }}"><div class="uk-alert">download all screenshots & photos as .zip ({{ filesize }})</div></a>
+                    {{/ images.zip }}
+                    {{# images.images.0 }}
+                        <div class="uk-grid images">
+                            {{# images.images }}
+                                <div class="uk-width-medium-1-2"><a href="{{ baseUrl }}/{{ . }}"><img src="{{ baseUrl }}/{{ . }}" alt="Photo or other type of image from {{ title }}" /></a></div>
+                            {{/ images.images }}
+                        </div>
+                    {{/ images.images.0 }}
+                    <p class="images-text">There are far more images available for {{ title }}, but these are the ones we felt would be most useful to you. If you have specific requests, please do <a href="#contact">contact us</a>!</p>
+                    <hr>
+
+                    <h2 id="logo">Logo & Icon</h2>
+                    {{# logo.zip }}
+                        <a href="{{ baseUrl }}/{{ path }}"><div class="uk-alert">download logo files as .zip ({{ filesize }})</div></a>
+                    {{/ logo.zip }}
+                    {{# logo.images.0 }}
+                        <div class="uk-grid images">
+                            {{# logo.images }}
+                                <div class="uk-width-medium-1-2"><a href="{{ baseUrl }}/{{ . }}"><img src="{{ baseUrl }}/{{ . }}" alt="Logo or icon from {{ title }}" /></a></div>
+                            {{/ logo.images }}
+                        </div>
+                    {{/ logo.images.0 }}
+                    {{^ logo.images.0 }}
+                        <p>There are currently no logos or icons available for {{ title }}. Check back later for more or <a href="#contact">contact us</a> for specific requests!</p>
+                    {{/ logo.images.0 }}
+                    <hr>
+
+                    {{# awards.0 }}
+                        <h2 id="awards">Awards & Recognition</h2>
+                        <ul>
+                            {{# awards }}
+                                <li>"{{ description }}" - <cite>{{ info }}</cite></li>
+                            {{/ awards }}
+                        </ul>
+                        <hr>
+                    {{/ awards.0 }}
+
+                    {{# quotes.0 }}
+                        <h2 id="quotes">Selected Articles</h2>
+                        <ul>
+                            {{# quotes }}
+                                <li>"{{ description }}"<br /><cite>- {{name }}, <a href="{{ link }}">{{ website }}</a></cite></li>
+                            {{/ quotes }}
+                        </ul>
+                        <hr>
+                    {{/ quotes.0 }}
+
+                    {{# additionals.0 }}
+                        <h2 id="links">Additional Links</h2>
+                        {{# additionals }}
+                            <p>
+                                <strong>{{ title }}</strong><br />
+                                {{ description }} <a href="{{ link }}">{{ link-name }}</a>.
+                            </p>
+                        {{/ additionals }}
+                        <hr>
+                    {{/ additionals.0 }}
+
+                    <div class="uk-grid">
+                        <div class="uk-width-medium-1-2">
+                            <h2 id="credits">Team & Repeating Collaborators</h2>
+                            {{# credits }}
+                                <p>
+                                    <strong>{{ person }}</strong><br />
+                                    {{# website }}
+                                        <a href="{{ website }}">{{ role }}</a>
+                                    {{/ website }}
+                                    {{^ website }}
+                                        {{ role }}
+                                    {{/ website }}
+                                </p>
+                            {{/ credits }}
+                        </div>
+                        <div class="uk-width-medium-1-2">
+                            <h2 id="contact">Contact</h2>
+                            {{# contact }}
+                                <p>
+                                    <strong>{{ name }}</strong><br />
+                                    {{# mail }}
+                                        <a href="mailto:{{ mail }}">{{ mail }}</a>
+                                    {{/mail }}
+                                    {{# link }}
+                                        <a href="{{ link }}">{{ link-name }}</a>
+                                    {{/ link }}
+                                </p>
+                            {{/ contact }}
+                        </div>
+                    </div>
+                    <hr>
+
+                    <p>
+                        <a href="http://dopresskit.com/">presskit()</a> by Rami Ismail (<a href="http://www.vlambeer.com/">Vlambeer</a>) - also thanks to <a href="/credits/">these fine folks</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="{{ baseUrl }}/assets/js/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="{{ baseUrl }}/assets/js/jquery.imagesloaded.js"></script>
+        <script type="text/javascript" src="{{ baseUrl }}/assets/js/masonry.pkgd.min.js"></script>
+        <script type="text/javascript">
+        $( document ).ready(function() {
+            var container = $('.images');
+
+            container.imagesLoaded( function() {
+                container.masonry({
+                    itemSelector: '.uk-width-medium-1-2',
+                });
+            });
+        });
+        </script>
+    </body>
+</html>
