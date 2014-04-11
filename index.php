@@ -28,4 +28,8 @@ $app->get('/', function () use ($app, $presskit) {
     }
 })->name('home');
 
+$app->get('/credits/', function() use ($app) {
+    $app->render('credits');
+})->name('credits');
+
 $app->run();
