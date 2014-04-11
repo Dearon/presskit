@@ -30,8 +30,57 @@ class Presskit_FormatTest extends PHPUnit_Framework_Testcase
 
     public function testAdditionalsLink()
     {
-        $input = array('additionals' => array(array('description' => 'Description', 'name' => 'Name', 'website' => 'Website', 'link' => 'http://www.website.com/')));
-        $expected = array('additionals' => array(array('description' => 'Description', 'name' => 'Name', 'website' => 'Website', 'link' => 'http://www.website.com/', 'link-name' => 'website.com')));
+        $input = array(
+            'additionals' => array(
+                array(
+                    'description' => 'Description',
+                    'name' => 'Name',
+                    'website' => 'Website',
+                    'link' => 'http://www.website.com/'
+                ),
+            ),
+        );
+        $expected = array(
+            'additionals' => array(
+                array(
+                    'description' => 'Description',
+                    'name' => 'Name',
+                    'website' => 'Website',
+                    'link' => 'http://www.website.com/',
+                    'link-name' => 'website.com'
+                ),
+            ),
+        );
+        $this->assertEquals($expected, $this->format->format($input));
+    }
+
+    public function testContactLinks()
+    {
+        $input = array(
+            'contact' => array(
+                array(
+                    'name' => 'Email',
+                    'mail' => 'test@test.com',
+                ),
+                array(
+                    'name' => 'Link',
+                    'link' => 'http://www.test.com/path',
+                ),
+            ),
+        );
+        $expected = array(
+            'contact' => array(
+                array(
+                    'name' => 'Email',
+                    'mail' => 'test@test.com',
+                ),
+                array(
+                    'name' => 'Link',
+                    'link' => 'http://www.test.com/path',
+                    'link-name' => 'test.com/path',
+                ),
+            ),
+        );
         $this->assertEquals($expected, $this->format->format($input));
     }
 

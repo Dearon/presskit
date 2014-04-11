@@ -26,6 +26,14 @@ class Format
             }
         }
 
+        if (array_key_exists('contact', $data)) {
+            foreach ($data['contact'] as &$contact) {
+                if (array_key_exists('link', $contact)) {
+                    $contact['link-name'] = $this->url($contact['link']);
+                }
+            }
+        }
+
         if (array_key_exists('trailers', $data)) {
             $data['trailers'] = $this->trailers($data['trailers']);
         }
@@ -41,6 +49,10 @@ class Format
             $name = substr($url['host'], 4);
         } else {
             $name = $url['host'];
+        }
+
+        if (! empty($url['path']) && $url['path'] != '/') {
+            $name = $name . $url['path'];
         }
 
         return $name;
