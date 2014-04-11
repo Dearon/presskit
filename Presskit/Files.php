@@ -9,12 +9,9 @@ class Files
 {
     private $baseDirectory;
 
-    public function __construct($directory = '')
+    public function __construct($baseDirectory)
     {
-        if ($directory === '') {
-            $directory = dirname(__FILE__).'/../';
-        }
-        $this->baseDirectory = $directory;
+        $this->baseDirectory = $baseDirectory;
     }
 
     public function projects()
