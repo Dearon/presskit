@@ -15,6 +15,8 @@ class Presskit_ValidationTest extends PHPUnit_Framework_Testcase
         require dirname(__FILE__).'/../../fixtures/validation/invalidQuoteWebsite.php';
         require dirname(__FILE__).'/../../fixtures/validation/invalidAdditionalsWebsite.php';
         require dirname(__FILE__).'/../../fixtures/validation/invalidCreditWebsite.php';        
+        require dirname(__FILE__).'/../../fixtures/validation/invalidContactWebsite.php';        
+        require dirname(__FILE__).'/../../fixtures/validation/invalidContactMail.php';        
 
         $this->validation = new \Presskit\Validation();
         $this->fullValidArray = $fullValidArray;
@@ -26,6 +28,8 @@ class Presskit_ValidationTest extends PHPUnit_Framework_Testcase
         $this->invalidQuoteWebsiteArray = $invalidQuoteWebsiteArray;
         $this->invalidAdditionalsWebsiteArray = $invalidAdditionalsWebsiteArray;
         $this->invalidCreditWebsiteArray = $invalidCreditWebsiteArray;
+        $this->invalidContactWebsiteArray = $invalidContactWebsiteArray;
+        $this->invalidContactMailArray = $invalidContactMailArray;
     }
 
     public function testNoInput()
@@ -90,5 +94,17 @@ class Presskit_ValidationTest extends PHPUnit_Framework_Testcase
     {
         $this->setExpectedException('InvalidArgumentException', 'The credit links need to be a valid urls');
         $this->validation->validate($this->invalidCreditWebsiteArray);
+    }
+
+    public function testInvalidContactWebsite()
+    {
+        $this->setExpectedException('InvalidArgumentException', 'The contact links need to be a valid urls');
+        $this->validation->validate($this->invalidContactWebsiteArray);
+    }
+
+    public function testInvalidContactMail()
+    {
+        $this->setExpectedException('InvalidArgumentException', 'The contact mail need to be a valid email address');
+        $this->validation->validate($this->invalidContactMailArray);
     }
 }

@@ -137,7 +137,7 @@ $fullValidArray = array(
         ),
         array(
             'name' => 'Web',
-            'link' => 'MyCompanyWebsite.com',
+            'link' => 'http://MyCompanyWebsite.com',
         ),
     ),
 );

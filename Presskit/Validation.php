@@ -70,6 +70,17 @@ class Validation
             }
         }
 
+        if (array_key_exists('contact', $data)) {
+            foreach($data['contact'] as $contact) {
+                if (array_key_exists('link', $contact) && ! filter_var($contact['link'], FILTER_VALIDATE_URL)) {
+                    throw new InvalidArgumentException('The contact links need to be a valid urls');
+                }
+                if (array_key_exists('mail', $contact) && ! filter_var($contact['mail'], FILTER_VALIDATE_EMAIL)) {
+                    throw new InvalidArgumentException('The contact mail need to be a valid email address');
+                }
+            }
+        }
+
         return $data;
     }
 }

@@ -146,7 +146,7 @@
 		</contact>
 		<contact>
 			<name>Web</name>
-			<link>MyCompanyWebsite.com</link>
+                        <link>http://MyCompanyWebsite.com</link>
 		</contact>
 	</contacts>
 </game>
