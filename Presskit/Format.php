@@ -64,13 +64,13 @@ class Format
             if ($trailer['type'] == 'youtube') {
                 $trailer['type'] = ucfirst($trailer['type']);
                 $trailer['url'] = 'http://www.youtube.com/watch?v=' . $trailer['id'];
-                $trailer['embedded'] = '<iframe src="//www.youtube.com/embed/' . $trailer['id'] . '" frameborder="0" allowfullscreen></iframe>';
+                $trailer['embedded'] = '<iframe src="//www.youtube.com/embed/' . $trailer['id'] . '" allowfullscreen></iframe>';
             }
 
             if ($trailer['type'] == 'vimeo') {
                 $trailer['type'] = ucfirst($trailer['type']);
                 $trailer['url'] = 'http://www.vimeo.com/' . $trailer['id'];
-                $trailer['embedded'] = '<iframe src="http://player.vimeo.com/video/' . $trailer['id'] . '" frameborder="0" allowfullscreen></iframe>';
+                $trailer['embedded'] = '<iframe src="http://player.vimeo.com/video/' . $trailer['id'] . '" allowfullscreen></iframe>';
             }
         }
 

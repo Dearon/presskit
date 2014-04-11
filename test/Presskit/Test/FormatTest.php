@@ -107,14 +107,14 @@ class Presskit_FormatTest extends PHPUnit_Framework_Testcase
                     'type' => 'Youtube',
                     'id' => '7jQbITg0MSk',
                     'url' => 'http://www.youtube.com/watch?v=7jQbITg0MSk',
-                    'embedded' => '<iframe src="//www.youtube.com/embed/7jQbITg0MSk" frameborder="0" allowfullscreen></iframe>',
+                    'embedded' => '<iframe src="//www.youtube.com/embed/7jQbITg0MSk" allowfullscreen></iframe>',
                 ),
                 array(
                     'name' => 'Vimeo video',
                     'type' => 'Vimeo',
                     'id' => '12536488',
                     'url' => 'http://www.vimeo.com/12536488',
-                    'embedded' => '<iframe src="http://player.vimeo.com/video/12536488" frameborder="0" allowfullscreen></iframe>',
+                    'embedded' => '<iframe src="http://player.vimeo.com/video/12536488" allowfullscreen></iframe>',
                 ),
             ),
         );
