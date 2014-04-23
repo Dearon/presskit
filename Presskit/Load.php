@@ -2,9 +2,11 @@
 
 namespace Presskit;
 
-class Presskit
+use \LogicException;
+
+class Load
 {
-    private $baseDirectory = '';
+    public $baseDirectory = '';
 
     public function __construct($baseDirectory = '')
     {
@@ -19,11 +21,15 @@ class Presskit
         $this->files = new \Presskit\Files($this->baseDirectory);
     }
 
-    public function getData($name)
+    public function load($name)
     {
         if ($name == 'company') {
-            $xml = $this->baseDirectory . 'data.xml';
-            $data = $this->parser->parse($xml);
+            if (is_file($this->baseDirectory . 'data.xml')) {
+                $xml = $this->baseDirectory . 'data.xml';
+               $data = $this->parser->parse($xml);
+            } else {
+                throw new LogicException('Unable to find required data file');
+            }
         }
 
         $this->validation->validate($data);

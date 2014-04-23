@@ -4,7 +4,7 @@ require 'vendor/autoload.php';
 require 'Presskit/Autoloader.php';
 
 \Presskit\Autoloader::register();
-$presskit = new \Presskit\Presskit();
+$presskit = new \Presskit\Load();
 
 $app = new \Slim\Slim(array(
     'view' => new \Slim\Mustache\Mustache()
@@ -21,7 +21,7 @@ $view->parserOptions = array(
 
 $app->get('/', function () use ($app, $presskit) {
     try {
-        $data = $presskit->getData('company');
+        $data = $presskit->load('company');
         $app->render('company', $data);
     } catch (Exception $e) {
         $app->render('500');

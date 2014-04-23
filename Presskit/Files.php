@@ -46,6 +46,10 @@ class Files
     {
         $images = array();
 
+        if (! is_dir($this->baseDirectory . 'images/')) {
+            return $images;
+        }
+
         if (file_exists($this->baseDirectory . 'images/images.zip')) {
             $filesize = filesize($this->baseDirectory . 'images/images.zip');
 
@@ -93,6 +97,10 @@ class Files
     public function logo()
     {
         $logo = array();
+
+        if (! is_dir($this->baseDirectory . 'images/')) {
+            return $logo;
+        }
 
         if (file_exists($this->baseDirectory . 'images/logo.zip')) {
             $filesize = filesize($this->baseDirectory . 'images/logo.zip');
