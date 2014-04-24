@@ -6,7 +6,7 @@ use \InvalidArgumentException;
 
 class XML
 {
-    public function parse($xml = '')
+    public function parse($xml = '', $type = '')
     {
         if (empty($xml) === true) {
             throw new InvalidArgumentException('The XML argument can not be empty');
@@ -25,6 +25,21 @@ class XML
             throw new InvalidArgumentException('The XML argument has to be valid XML');
         }
 
+        if (empty($type) == true) {
+            throw new InvalidArgumentException('The type argument can not be empty');
+        }
+
+        if ($type == 'company') {
+            return $this->company($xml);
+        } else if ($type == 'project') {
+            return $this->project($xml);
+        } else {
+            throw new InvalidArgumentException('The type argument has to be either company or project');
+        }
+    }
+
+    private function company($xml)
+    {
         $data = array();
 
         // Required
@@ -131,6 +146,13 @@ class XML
                 $data['contact'][] = $array;
             }
         }
+
+        return $data;
+    }
+
+    public function project($xml = '')
+    {
+        $data = array();
 
         return $data;
     }

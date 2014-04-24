@@ -26,7 +26,16 @@ class Load
         if ($name == 'company') {
             if (is_file($this->baseDirectory . 'data.xml')) {
                 $xml = $this->baseDirectory . 'data.xml';
-               $data = $this->parser->parse($xml);
+                $data = $this->parser->parse($xml, 'company');
+            } else {
+                throw new LogicException('Unable to find required data file');
+            }
+        } else {
+            $name = basename($name);
+
+            if (is_file($this->baseDirectory . $name . '/data.xml')) {
+                $xml = $this->baseDirectory . $name . '/data.xml';
+                $data = $this->parser->project($xml, 'project');
             } else {
                 throw new LogicException('Unable to find required data file');
             }
