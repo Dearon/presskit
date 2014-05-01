@@ -6,7 +6,7 @@ class Presskit_FilesTest extends PHPUnit_Framework_Testcase
 
     public function setUp()
     {
-        $directory = dirname(__FILE__).'/../../fixtures/files/';
+        $directory = dirname(__FILE__).'/../../fixtures/data/presskit/';
         $this->files = new \Presskit\Files($directory);
     }
 

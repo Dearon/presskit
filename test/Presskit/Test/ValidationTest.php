@@ -2,26 +2,29 @@
 
 class Presskit_ValidationTest extends PHPUnit_Framework_Testcase
 {
+    protected $fixtures;
     protected $validation;
 
     protected function setUp()
     {
-        require dirname(__FILE__).'/../../fixtures/parser/fullValid.php';
-        require dirname(__FILE__).'/../../fixtures/parser/minimalValid.php';
-        require dirname(__FILE__).'/../../fixtures/parser/invalid.php';
-        require dirname(__FILE__).'/../../fixtures/validation/invalidWebsite.php';
-        require dirname(__FILE__).'/../../fixtures/validation/invalidPressContact.php';
-        require dirname(__FILE__).'/../../fixtures/validation/invalidSocialWebsite.php';
-        require dirname(__FILE__).'/../../fixtures/validation/invalidQuoteWebsite.php';
-        require dirname(__FILE__).'/../../fixtures/validation/invalidAdditionalsWebsite.php';
-        require dirname(__FILE__).'/../../fixtures/validation/invalidCreditWebsite.php';        
-        require dirname(__FILE__).'/../../fixtures/validation/invalidContactWebsite.php';        
-        require dirname(__FILE__).'/../../fixtures/validation/invalidContactMail.php';        
+        $this->fixtures = dirname(__FILE__).'/../../fixtures/';
+
+        require $this->fixtures.'data/php/company/full.php';
+        require $this->fixtures.'data/php/company/minimal.php';
+        require $this->fixtures.'data/php/company/invalid.php';
+        require $this->fixtures.'validation/invalidWebsite.php';
+        require $this->fixtures.'validation/invalidPressContact.php';
+        require $this->fixtures.'validation/invalidSocialWebsite.php';
+        require $this->fixtures.'validation/invalidQuoteWebsite.php';
+        require $this->fixtures.'validation/invalidAdditionalsWebsite.php';
+        require $this->fixtures.'validation/invalidCreditWebsite.php';
+        require $this->fixtures.'validation/invalidContactWebsite.php';
+        require $this->fixtures.'validation/invalidContactMail.php'; 
 
         $this->validation = new \Presskit\Validation();
-        $this->fullValidArray = $fullValidArray;
-        $this->minimalValidArray = $minimalValidArray;
-        $this->invalidArray = $invalidArray;
+        $this->companyFullArray = $companyFullArray;
+        $this->companyMinimalArray = $companyMinimalArray;
+        $this->companyInvalidArray = $companyInvalidArray;
         $this->invalidWebsiteArray = $invalidWebsiteArray;
         $this->invalidPressContactArray = $invalidPressContactArray;
         $this->invalidSocialWebsiteArray = $invalidSocialWebsiteArray;
@@ -44,20 +47,20 @@ class Presskit_ValidationTest extends PHPUnit_Framework_Testcase
         $this->validation->validate('A string');
     }
 
-    public function testInvalidArray()
+    public function testCompanyInvalidArray()
     {
         $this->setExpectedException('InvalidArgumentException', 'The data array did not contain all the necessary fields');
-        $this->validation->validate($this->invalidArray);
+        $this->validation->validate($this->companyInvalidArray);
     }
 
-    public function testMinimalValidArray()
+    public function testCompanyMinimalArray()
     {
-        $this->assertEquals($this->minimalValidArray, $this->validation->validate($this->minimalValidArray));
+        $this->assertEquals($this->companyMinimalArray, $this->validation->validate($this->companyMinimalArray));
     }
 
-    public function testFullValidArray()
+    public function testCompanyFullArray()
     {
-        $this->assertEquals($this->fullValidArray, $this->validation->validate($this->fullValidArray));
+        $this->assertEquals($this->companyFullArray, $this->validation->validate($this->companyFullArray));
     }
 
     public function testInvalidWebsite()

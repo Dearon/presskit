@@ -1,6 +1,6 @@
 <?php
 
-$minimalValidArray = array(
+$companyMinimalArray = array(
     // Required
     'title' => 'Company Name',
     'founding-date' => 'September 1, 2010',

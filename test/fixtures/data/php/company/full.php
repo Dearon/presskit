@@ -1,6 +1,15 @@
 <?php
 
-$invalidArray = array(
+$companyFullArray = array(
+    // Required
+    'title' => 'Company Name',
+    'founding-date' => 'September 1, 2010',
+    'website' => 'http://www.website.com/',
+    'based-in' => 'Cityville, Metropolisland',
+    'press-contact' => 'press-contact@company.com',
+    'phone' => '+00 (1) 22 33 44 55 66',
+    'description' => 'We\'re games studio and we make games. We\'re also capable of editing XML files.',
+
     // Optional
     'analytics' => 'UA-11111111-1',
     'address' => array(
@@ -11,11 +20,11 @@ $invalidArray = array(
     'social' => array(
         array(
             'name' => 'twitter.com/MyCompanyName',
-            'link' => 'twitter.com/MyCompanyName',
+            'link' => 'http://twitter.com/MyCompanyName',
         ),
         array(
             'name' => 'facebook.com/MyCompanyName',
-            'link' => 'facebook.com/MyCompanyName',
+            'link' => 'http://facebook.com/MyCompanyName',
         ),
         array(
             'name' => 'Skype',
@@ -128,7 +137,7 @@ $invalidArray = array(
         ),
         array(
             'name' => 'Web',
-            'link' => 'MyCompanyWebsite.com',
+            'link' => 'http://MyCompanyWebsite.com',
         ),
     ),
 );
