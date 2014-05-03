@@ -13,11 +13,17 @@ class Presskit_ParserXMLTest extends PHPUnit_Framework_Testcase
         require $this->fixtures.'data/php/company/full.php';
         require $this->fixtures.'data/php/company/minimal.php';
         require $this->fixtures.'data/php/company/invalid.php';
+        require $this->fixtures.'data/php/project/full.php';
+        require $this->fixtures.'data/php/project/minimal.php';
+        require $this->fixtures.'data/php/project/invalid.php';
 
         $this->parser = new \Presskit\Parser\XML();
         $this->companyFullArray = $companyFullArray;
         $this->companyMinimalArray = $companyMinimalArray;
         $this->companyInvalidArray = $companyInvalidArray;
+        $this->projectFullArray = $projectFullArray;
+        $this->projectMinimalArray = $projectMinimalArray;
+        $this->projectInvalidArray = $projectInvalidArray;
     }
 
     public function testNoXMLInput()
@@ -63,5 +69,20 @@ class Presskit_ParserXMLTest extends PHPUnit_Framework_Testcase
     public function testCompanyInvalidXML()
     {
         $this->assertEquals($this->companyInvalidArray, $this->parser->parse($this->fixtures.'data/xml/company/invalid.xml', 'company'));
+    }
+
+    public function testProjectFullXML()
+    {
+        $this->assertEquals($this->projectFullArray, $this->parser->parse($this->fixtures.'data/xml/project/full.xml', 'project'));
+    }
+
+    public function testProjectMinimalXML()
+    {
+        $this->assertEquals($this->projectMinimalArray, $this->parser->parse($this->fixtures.'data/xml/project/minimal.xml', 'project'));
+    }
+
+    public function testProjectInvalidXML()
+    {
+        $this->assertEquals($this->projectInvalidArray, $this->parser->parse($this->fixtures.'data/xml/project/invalid.xml', 'project'));
     }
 }

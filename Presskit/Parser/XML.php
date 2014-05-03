@@ -154,6 +154,92 @@ class XML
     {
         $data = array();
 
+        // Required
+        if (isset($xml->title)) $data['title'] = (string) $xml->title;
+        if (isset($xml->{'release-date'})) $data['release-date'] = (string) $xml->{'release-date'};
+        if (isset($xml->website)) $data['website'] = (string) $xml->website;
+        if (isset($xml->description)) $data['description'] = (string) $xml->description;
+        if (isset($xml->history)) $data['history'] = (string) $xml->history;
+
+        // Optional
+        if (isset($xml->{'press-can-request-copy'})) $data['press-allowed-copies'] = filter_var($xml->{'press-can-request-copy'}, FILTER_VALIDATE_BOOLEAN);
+
+        if (isset($xml->platforms) && isset($xml->platforms->platform)) {
+            $data['platforms'] = array();
+            foreach ($xml->platforms->platform as $platform) {
+                $data['platforms'][] = array('name' => (string) $platform->name, 'link' => (string) $platform->link);
+            }
+        }
+
+        if (isset($xml->prices) && isset($xml->prices->price)) {
+            $data['prices'] = array();
+            foreach ($xml->prices->price as $price) {
+                $data['prices'][] = array('currency' => (string) $price->currency, 'value' => (string) $price->value);
+            }
+        }
+
+        if (isset($xml->features) && isset($xml->features->feature)) {
+            $data['features'] = array();
+            foreach ($xml->features->feature as $feature) {
+                $data['features'][] = (string) $feature;
+            }
+        }
+
+        if (isset($xml->trailers) && isset($xml->trailers->trailer)) {
+            $data['trailers'] = array();
+            foreach ($xml->trailers->trailer as $trailer) {
+                $array = array('name' => (string) $trailer->name);
+
+                if (isset($trailer->youtube)) {
+                    $array['type'] = 'youtube';
+                    $array['id'] = (string) $trailer->youtube;
+                }
+
+                if (isset($trailer->vimeo)) {
+                    $array['type'] = 'vimeo';
+                    $array['id'] = (string) $trailer->vimeo;
+                }
+
+                $data['trailers'][] = $array;
+            }
+        }
+
+        if (isset($xml->awards) && isset($xml->awards->award)) {
+            $data['awards'] = array();
+            foreach ($xml->awards->award as $award) {
+                $data['awards'][] = array('description' => (string) $award->description, 'info' => (string) $award->info);
+            }
+        }
+
+        if (isset($xml->quotes) && isset($xml->quotes->quote)) {
+            $data['quotes'] = array();
+            foreach ($xml->quotes->quote as $quote) {
+                $data['quotes'][] = array('description' => (string) $quote->description, 'name' => (string) $quote->name, 'website' => (string) $quote->website, 'link' => (string) $quote->link);
+            }
+        }
+
+        if (isset($xml->additionals) && isset($xml->additionals->additional)) {
+            $data['additionals'] = array();
+            foreach ($xml->additionals->additional as $additional) {
+                $data['additionals'][] = array('title' => (string) $additional->title, 'description' => (string) $additional->description, 'link' => (string) $additional->link);
+            }
+        }
+
+        if (isset($xml->credits) && isset($xml->credits->credit)) {
+            $data['credits'] = array();
+            foreach ($xml->credits->credit as $credit) {
+                $array = array('person' => (string) $credit->person, 'role' => (string) $credit->role);
+
+                if (isset($credit->website)) {
+                    $array['website'] = (string) $credit->website;
+                } else {
+                    $array['website'] = '';
+                }
+
+                $data['credits'][] = $array;
+            }
+        }
+
         return $data;
     }
 }
