@@ -136,12 +136,12 @@ $projectFullArray = array(
         array(
             'person' => 'Oliver Twist',
             'role' => 'Artist, Freelancer',
-            'website' => 'www.olivertwist.com',
+            'website' => 'http://www.olivertwist.com',
         ),
         array(
             'person' => 'Jane Doette',
             'role' => 'Music, Freelancer',
-            'website' => 'www.olivertwist.com',
+            'website' => 'http://www.olivertwist.com',
         ),
     ),
 );
