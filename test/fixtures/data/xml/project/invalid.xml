@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <game>
-	<press-can-request-copy>TRUE</press-can-request-copy>
+        <press-can-request-copy>TRUE</press-can-request-copy>
+        <monetization-permission>Ask</monetization-permission>
 
 	<platforms>
 		<platform>

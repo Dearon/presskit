@@ -162,7 +162,22 @@ class XML
         if (isset($xml->history)) $data['history'] = (string) $xml->history;
 
         // Optional
-        if (isset($xml->{'press-can-request-copy'})) $data['press-allowed-copies'] = filter_var($xml->{'press-can-request-copy'}, FILTER_VALIDATE_BOOLEAN);
+        if (isset($xml->{'press-can-request-copy'})) $data['press-can-request-copy'] = filter_var($xml->{'press-can-request-copy'}, FILTER_VALIDATE_BOOLEAN);
+
+        if (isset($xml->{'monetization-permission'})) {
+            $data['monetization-permission'] = array();
+            $monetization = strtolower((string) $xml->{'monetization-permission'});
+
+            if ($monetization == 'ask') {
+                $data['monetization-permission']['ask'] = true;
+            } else if ($monetization == 'non-commercial') {
+                $data['monetization-permission']['non-commercial'] = true;
+            } else if ($monetization == 'monetize') {
+                $data['monetization-permission']['monetize'] = true;
+            } else {
+                $data['monetization-permission']['not-allowed'] = true;
+            }
+        }
 
         if (isset($xml->platforms) && isset($xml->platforms->platform)) {
             $data['platforms'] = array();

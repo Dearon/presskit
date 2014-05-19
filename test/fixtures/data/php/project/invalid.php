@@ -2,7 +2,10 @@
 
 $projectInvalidArray = array(
     // Optional
-    'press-allowed-copies' => True,
+    'press-can-request-copy' => True,
+    'monetization-permission' => array(
+        'ask' => true,
+    ),
     'platforms' => array(
         array(
             'name' => 'PC / Mac',
