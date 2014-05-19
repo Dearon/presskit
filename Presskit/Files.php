@@ -42,16 +42,22 @@ class Files
         return $projects;
     }
 
-    public function images()
+    public function images($project = false)
     {
         $images = array();
 
-        if (! is_dir($this->baseDirectory . 'images/')) {
+        if ($project) {
+            $directory = $project . '/images/';
+        } else {
+            $directory = 'images/';
+        }
+
+        if (! is_dir($this->baseDirectory . $directory)) {
             return $images;
         }
 
-        if (file_exists($this->baseDirectory . 'images/images.zip')) {
-            $filesize = filesize($this->baseDirectory . 'images/images.zip');
+        if (file_exists($this->baseDirectory . $directory . 'images.zip')) {
+            $filesize = filesize($this->baseDirectory . $directory . 'images.zip');
 
             if ($filesize < 1024) {
                 $filesize = '0KB';
@@ -62,7 +68,7 @@ class Files
                 $filesize = (int) (( $filesize / 1024 ) / 1024 ) . 'MB';
             }
 
-            $images['zip']['path'] = 'images/images.zip';
+            $images['zip']['path'] = $directory . 'images.zip';
             $images['zip']['filesize'] = $filesize;
         }
 
@@ -77,16 +83,16 @@ class Files
         );
 
 
-        $files = scandir($this->baseDirectory . 'images/');
+        $files = scandir($this->baseDirectory . $directory);
         $files = array_diff($files, $ignore);
 
         foreach ($files as $file) {
-            if (is_file($this->baseDirectory . 'images/' . $file)) {
+            if (is_file($this->baseDirectory . $directory . $file)) {
                 $finfo = new finfo(FILEINFO_MIME);
-                $mime = $finfo->file($this->baseDirectory . 'images/' . $file);
+                $mime = $finfo->file($this->baseDirectory . $directory . $file);
 
                 if (strpos($mime, 'image') !== false) {
-                    $images['images'][] = 'images/' . $file;
+                    $images['images'][] = $directory . $file;
                 }
             }
         }
@@ -94,16 +100,22 @@ class Files
         return $images;
     }
 
-    public function logo()
+    public function logo($project = false)
     {
         $logo = array();
 
-        if (! is_dir($this->baseDirectory . 'images/')) {
+        if ($project) {
+            $directory = $project . '/images/';
+        } else {
+            $directory = 'images/';
+        }
+
+        if (! is_dir($this->baseDirectory . $directory)) {
             return $logo;
         }
 
-        if (file_exists($this->baseDirectory . 'images/logo.zip')) {
-            $filesize = filesize($this->baseDirectory . 'images/logo.zip');
+        if (file_exists($this->baseDirectory . $directory . 'logo.zip')) {
+            $filesize = filesize($this->baseDirectory . $directory . 'logo.zip');
 
             if ($filesize < 1024) {
                 $filesize = '0KB';
@@ -114,16 +126,16 @@ class Files
                 $filesize = (int) (( $filesize / 1024 ) / 1024 ) . 'MB';
             }
 
-            $logo['zip']['path'] = 'images/logo.zip';
+            $logo['zip']['path'] = $directory . 'logo.zip';
             $logo['zip']['filesize'] = $filesize;
         }
 
-        if (file_exists($this->baseDirectory . 'images/logo.png')) {
-            $logo['images'][] = 'images/logo.png';
+        if (file_exists($this->baseDirectory . $directory . 'logo.png')) {
+            $logo['images'][] = $directory . 'logo.png';
         }
 
-        if (file_exists($this->baseDirectory . 'images/icon.png')) {
-            $logo['images'][] = 'images/icon.png';
+        if (file_exists($this->baseDirectory . $directory . 'icon.png')) {
+            $logo['images'][] = $directory . 'icon.png';
         }
 
         return $logo;
