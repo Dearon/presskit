@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>{{ title }} by {{ company-title }}</title>
+        <link href="{{ baseUrl }}/assets/css/uikit.gradient.min.css" rel="stylesheet" type="text/css">
+        <link href="{{ baseUrl }}/assets/css/style.css" rel="stylesheet" type="text/css">
+
+        {{# analytics }}
+            <!-- Google Analytics -->
+            <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', '{{ analytics }}', 'auto');
+            ga('send', 'pageview');
+            </script>
+            <!-- End Google Analytics -->
+        {{/ analytics }}
+    </head>
+    <body>
+        <div class="uk-container uk-container-center">
+            <div class="uk-grid">
+                <div id="navigation" class="uk-width-medium-1-4">
+                    <h1 class="nav-header">{{ title }}</h1>
+                    <a class="nav-header" href="{{ website }}">{{ website-name }}</a>
+
+                    <ul class="uk-nav uk-nav-side">
+                        <li><a href="#factsheet">Factsheet</a></li>
+                        <li><a href="#description">Description</a></li>
+                        <li><a href="#history">History</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#trailers">Videos</a></li>
+                        <li><a href="#images">Images</a></li>
+                        <li><a href="#logo">Logo & Icon</a></li>
+                        {{# awards.0 }}<li><a href="#awards">Awards & Recognition</a></li>{{/ awards.0 }}
+                        {{# quotes.0 }}<li><a href="#quotes">Selected Articles</a></li>{{/ quotes.0 }}
+                        {{# press-can-request-copy }}<li><a href="#preview">Request Press Copy</a></li>{{/ press-can-request-copy }}
+                        {{# monetization-permission }}<li><a href="#monetize">Monetization Permission</a></li>{{/ monetization-permission }}
+                        <li><a href="#links">Additional Links</a></li>
+                        <li><a href="#about">About {{ company-title }}</a></li>
+                        <li><a href="#credits">Team</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div id="content" class="uk-width-medium-3-4">
+                    <img src="{{ baseUrl }}/{{ project-directory }}/images/header.png" alt="Header images for {{ title }}" class="header">
+
+                    <div class="uk-grid">
+                        <div class="uk-width-medium-2-6">
+                            <h2 id="factsheet">Factsheet</h2>
+                            <p>
+                                <strong>Developer:</strong><br/>
+                                <a href="{{ baseUrl }}">{{ company-title }}</a><br/>
+                                Based in {{ company-based-in }}
+                            </p>
+                            <p>
+                                <strong>Release date:</strong><br/>
+                                {{ release-date }}
+                            </p>
+                            {{# platforms.0 }}
+                                <p>
+                                    <strong>Platforms:</strong>
+                                    {{# platforms }}
+                                        <br /><a href="{{ link }}">{{ name }}</a>
+                                    {{/ platforms }}
+                                </p>
+                            {{/ platforms.0 }}
+                            <p>
+                                <strong>Website:</strong><br/>
+                                <a href="{{ website }}">{{ website-name }}</a>
+                            </p>
+                            <p>
+                                <strong>Regular Price:</strong>
+                                {{# prices.0 }}
+                                    <table>
+                                        {{# prices }}
+                                            <tr>
+                                                <td>{{ currency }}</td>
+                                                <td>{{ value }}</td>
+                                            </tr>
+                                        {{/ prices }}
+                                    </table>
+                                {{/ prices.0 }}
+                                {{^ prices.0 }}
+                                    -
+                                {{/ prices.0 }}
+                        </div>
+                        <div class="uk-width-medium-4-6">
+                            <h2 id="description">Description</h2>
+                            <p>{{ description }}</p>
+
+                            {{# history }}
+                                <h2 id="history">History</h2>
+                                <p>{{ history }}</p>
+                            {{/ history }}
+
+                            {{# features.0 }}
+                                <h2 id="features">Features</h2>
+                                <ul>
+                                    {{# features }}
+                                        <li>{{ . }}</li>
+                                    {{/ features }}
+                                </ul>
+                            {{/ features.0 }}
+                        </div>
+                    </div>
+                    <hr>
+
+                    <h2 id="trailers">Videos</h2>
+                    {{# trailers.0 }}
+                        {{# trailers }}
+                            <p><strong>{{ name }}</strong> <a href="{{ url }}">{{ type }}</a><br />
+                            <div class="uk-responsive-width iframe-container">{{{ embedded }}}</div>
+                        {{/ trailers }}
+                    {{/ trailers.0 }}
+                    {{^ trailers.0 }}
+                        <p>There are currently no trailers available for {{ title }}. Check back later for more or <a href="#contact">contact us</a> for specific requests!
+                    {{/ trailers.0 }}
+                    <hr>
+
+                    <h2 id="images">Images</h2>
+                    {{# images.zip }}
+                        <a href="{{ baseUrl }}/{{ path }}"><div class="uk-alert">download all screenshots & photos as .zip ({{ filesize }})</div></a>
+                    {{/ images.zip }}
+                    {{# images.images.0 }}
+                        <div class="uk-grid images">
+                            {{# images.images }}
+                                <div class="uk-width-medium-1-2"><a href="{{ baseUrl }}/{{ . }}"><img src="{{ baseUrl }}/{{ . }}" alt="Photo or other type of image from {{ title }}" /></a></div>
+                            {{/ images.images }}
+                        </div>
+                    {{/ images.images.0 }}
+                    {{^ images.images.0 }}
+                        <p class="images-text">There are currently no screenshots available for {{ title }}. Check back later for more or <a href="#contact">contact us</a> for specific requests!</p>
+                    {{/ images.images.0 }}
+                    <hr>
+
+                    <h2 id="logo">Logo & Icon</h2>
+                    {{# logo.zip }}
+                        <a href="{{ baseUrl }}/{{ path }}"><div class="uk-alert">download logo files as .zip ({{ filesize }})</div></a>
+                    {{/ logo.zip }}
+                    {{# logo.images.0 }}
+                        <div class="uk-grid images">
+                            {{# logo.images }}
+                                <div class="uk-width-medium-1-2"><a href="{{ baseUrl }}/{{ . }}"><img src="{{ baseUrl }}/{{ . }}" alt="Logo or icon from {{ title }}" /></a></div>
+                            {{/ logo.images }}
+                        </div>
+                    {{/ logo.images.0 }}
+                    {{^ logo.images.0 }}
+                        <p>There are currently no logos or icons available for {{ title }}. Check back later for more or <a href="#contact">contact us</a> for specific requests!</p>
+                    {{/ logo.images.0 }}
+                    <hr>
+
+                    {{# awards.0 }}
+                        <h2 id="awards">Awards & Recognition</h2>
+                        <ul>
+                            {{# awards }}
+                                <li>"{{ description }}" - <cite>{{ info }}</cite></li>
+                            {{/ awards }}
+                        </ul>
+                        <hr>
+                    {{/ awards.0 }}
+
+                    {{# quotes.0 }}
+                        <h2 id="quotes">Selected Articles</h2>
+                        <ul>
+                            {{# quotes }}
+                                <li>"{{ description }}"<br /><cite>- {{ name }}, <a href="{{ link }}">{{ website }}</a></cite></li>
+                            {{/ quotes }}
+                        </ul>
+                        <hr>
+                    {{/ quotes.0 }}
+
+                    {{# press-can-request-copy }}
+                        <h2 id="preview">Request Press Copy</h2>
+                        <p>Please fill in your e-mail address below and we\'ll get back to you as soon as a press copy is available for you.<br/>
+                        <div id="mailform">
+                            <form id="pressrequest" class="uk-form" action="/mail/" method="post">
+                                <input type="hidden" value="{{ title }}" id="gametitle" name="gametitle">
+                                <input type="hidden" value="{{ project-directory }}" id="game" name="game">
+    	                        <fieldset>
+                                    <input type="text" placeholder="me@website.com" id="from" name="from">, writing for <input type="text" placeholder="company name" id="outlet" name="outlet"> would like to <button class="uk-button" id="submit-button">request a press copy</button>
+                                </fieldset>
+                            </form>
+                            <p>Alternatively, you can always request a press copy by <a href="#contact">sending us a quick email</a>.
+                        </div>
+
+                        {{# email-result.success }}
+                            <div class="uk-alert uk-alert-success">{{{ . }}}</div>
+                        {{/ email-result.success }}
+
+                        {{# email-result.error }}
+                            <div class="uk-alert uk-alert-danger">{{{ . }}}</div>
+                        {{/ email-result.error }}
+                        <hr>
+                    {{/ press-can-request-copy }}
+
+                    {{# monetization-permission.not-allowed }}
+                        <h2 id="monetize">Monetization Permission</h2>
+                        <p>{{ company-title }} does currently not allow for the contents of {{ title }} to be published through video broadcasting services.</p>
+                        <hr>
+                    {{/ monetization-permission.not-allowed }}
+                    {{# monetization-permission.ask }}
+                        <h2 id="monetize">Monetization Permission</h2>
+                        <p>{{ company-title }} does allow the contents of this game to be published through video broadcasting services only with direct written permission from {{ company-title }}. Check at the bottom of this page for contact information.</p>
+                        <hr>        
+                    {{/ monetization-permission.ask }}
+                    {{# monetization-permission.non-commercial }}
+                        <h2 id="monetize">Monetization Permission</h2>
+                        <p>{{ company-title }} allows for the contents of {{ title }} to be published through video broadcasting services for non-commercial purposes only. Monetization of any video created containing assets from {{ title }} is not allowed.</p>
+                        <hr>
+                    {{/ monetization-permission.non-commercial }}
+                    {{# monetization-permission.monetize }}
+                        <h2 id="monetize">Monetization Permission</h2>
+                        <p>{{ company-title }} allows for the contents of {{ title }} to be published through video broadcasting services for any commercial or non-commercial purposes. Monetization of videos created containing assets from {{ title }} is legally & explicitly allowed by {{ company-title }}. This permission can be found in writing at <a href="{{ baseUrl }}/{{ project-directory }}">{{ baseUrl }}/{{ project-directory }}</a>.</p>
+                        <hr>
+                    {{/ monetization-permission.monetize }}
+
+                    {{# additionals.0 }}
+                        <h2 id="links">Additional Links</h2>
+                        {{# additionals }}
+                            <p>
+                                <strong>{{ title }}</strong><br />
+                                {{ description }} <a href="{{ link }}">{{ link-name }}</a>.
+                            </p>
+                        {{/ additionals }}
+                        <hr>
+                    {{/ additionals.0 }}
+
+                    <h2 id="about">About {{ company-title }}</h2>
+                    <p>
+                        <strong>Boilerplate</strong><br />
+                        {{ company-description }}
+                    </p>
+                    <p>
+                        <strong>More information</strong></br >
+                        More information on {{ company-title }}, our logo & relevant media are available <a href="{{ baseUrl }}">here</a>.
+                    </p>
+                    <hr>
+
+                    <div class="uk-grid">
+                        <div class="uk-width-medium-1-2">
+                            <h2 id="credits">{{ title }} Credits</h2>
+                            {{# credits }}
+                                <p>
+                                    <strong>{{ person }}</strong><br />
+                                    {{# website }}
+                                        <a href="{{ website }}">{{ role }}</a>
+                                    {{/ website }}
+                                    {{^ website }}
+                                        {{ role }}
+                                    {{/ website }}
+                                </p>
+                            {{/ credits }}
+                        </div>
+                        <div class="uk-width-medium-1-2">
+                            <h2 id="contact">Contact</h2>
+                            {{# contact }}
+                                <p>
+                                    <strong>{{ name }}</strong><br />
+                                    {{# mail }}
+                                        <a href="mailto:{{ mail }}">{{ mail }}</a>
+                                    {{/mail }}
+                                    {{# link }}
+                                        <a href="{{ link }}">{{ link-name }}</a>
+                                    {{/ link }}
+                                </p>
+                            {{/ contact }}
+                        </div>
+                    </div>
+                    <hr>
+
+                    <p>
+                        <a href="http://dopresskit.com/">presskit()</a> by Rami Ismail (<a href="http://www.vlambeer.com/">Vlambeer</a>) - also thanks to <a href="/credits/">these fine folks</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="{{ baseUrl }}/assets/js/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="{{ baseUrl }}/assets/js/jquery.imagesloaded.js"></script>
+        <script type="text/javascript" src="{{ baseUrl }}/assets/js/masonry.pkgd.min.js"></script>
+        <script type="text/javascript">
+        $( document ).ready(function() {
+            var container = $('.images');
+
+            container.imagesLoaded( function() {
+                container.masonry({
+                    itemSelector: '.uk-width-medium-1-2',
+                });
+            });
+        });
+        </script>
+    </body>
+</html>
