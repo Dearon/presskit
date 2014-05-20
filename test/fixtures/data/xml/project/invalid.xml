@@ -2,6 +2,9 @@
 
 <game>
         <press-can-request-copy>TRUE</press-can-request-copy>
+	<promoter>
+		<product>1</product>
+	</promoter>
         <monetization-permission>Ask</monetization-permission>
 
 	<platforms>

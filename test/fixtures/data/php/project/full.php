@@ -10,6 +10,7 @@ $projectFullArray = array(
 
     // Optional
     'press-can-request-copy' => True,
+    'promoter' => 1,
     'monetization-permission' => array(
         'monetize' => true,
     ),

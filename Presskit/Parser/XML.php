@@ -164,6 +164,10 @@ class XML
         // Optional
         if (isset($xml->{'press-can-request-copy'})) $data['press-can-request-copy'] = filter_var($xml->{'press-can-request-copy'}, FILTER_VALIDATE_BOOLEAN);
 
+        if (isset($xml->promoter) && isset($xml->promoter->product)) {
+            $data['promoter'] = (string) $xml->promoter->product;
+        }
+
         if (isset($xml->{'monetization-permission'})) {
             $data['monetization-permission'] = array();
             $monetization = strtolower((string) $xml->{'monetization-permission'});
