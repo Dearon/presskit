@@ -8,7 +8,6 @@ class Promoter
 {
     public function promoter($promotercode = '') {
         if (empty($promotercode)) {
-            echo $promotercode;
             throw new InvalidArgumentException('The promoter code can not be empty');
         }
 
