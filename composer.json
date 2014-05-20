@@ -1,6 +1,7 @@
 {
     "require": {
-        "dearon/slim-mustache":"dev-master"
+        "slim/slim": "dev-master",
+        "dearon/slim-mustache": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "4.0.*"
