@@ -1,7 +1,9 @@
 RewriteEngine On
 
 RewriteRule ^vendor/.*$ - [F,L]
+RewriteRule ^test/.*$ - [F,L]
 RewriteRule ^Presskit/.*$ - [F,L]
+RewriteRule ^phpunit.xml.dist$ - [F,L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ index.php [QSA,L]
