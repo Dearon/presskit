@@ -1,3 +1,7 @@
 RewriteEngine On
+
+RewriteRule ^vendor/.*$ - [F,L]
+RewriteRule ^Presskit/.*$ - [F,L]
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^ index.php [QSA,L]
