@@ -18,7 +18,7 @@ $view = $app->view();
 
 $view->parserOptions = array(
     'helpers' => array(
-        'baseUrl' => $req->getUrl(),
+        'baseUrl' => $req->getRootUri(),
     ),
 );
 
@@ -35,7 +35,7 @@ $app->get('/credits/', function() use ($app) {
     $app->render('credits');
 })->name('credits');
 
-$app->post('/mail/', function() use ($app, $presskit) {
+$app->post('/mail/', function() use ($app, $req, $presskit) {
     $data = $presskit->load('company');
     $email = new \Presskit\Email();
 
@@ -58,16 +58,18 @@ $app->post('/mail/', function() use ($app, $presskit) {
             $app->flash('error', 'We failed to send the email. Please try contacting us using <a href="#contact">one of the options listed here</a>.');
         }
     } finally {
-        $app->redirect('/' . urlencode($_POST['game']) . '#preview');
+        $app->redirect($req->getRootUri() . '/' . urlencode($_POST['game']) . '#preview');
     }
 })->name('mail');
 
-$app->get('/:project', function($project) use ($app, $presskit) {
+$app->get('/:project/', function($project) use ($app, $presskit) {
     try {
         $data = $presskit->load($project);
 
         if (isset($_SESSION['slim.flash']['error'])) {
             $data['email-result']['error'] = $_SESSION['slim.flash']['error'];
+        } else if (isset($_SESSION['slim.flash']['success'])) {
+            $data['email-result']['success'] = $_SESSION['slim.flash']['success'];
         }
 
         $app->render('project', $data);
