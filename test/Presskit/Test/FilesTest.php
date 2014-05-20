@@ -25,7 +25,7 @@ class Presskit_FilesTest extends PHPUnit_Framework_Testcase
         $this->assertEquals($expected, $this->files->projects());
     }
 
-    public function testImages()
+    public function testCompanyImages()
     {
         $expected = array(
             'zip' => array(
@@ -40,7 +40,7 @@ class Presskit_FilesTest extends PHPUnit_Framework_Testcase
         $this->assertEquals($expected, $this->files->images());
     }
 
-    public function testLogo()
+    public function testCompanyLogo()
     {
         $expected = array(
             'zip' => array(
@@ -52,5 +52,34 @@ class Presskit_FilesTest extends PHPUnit_Framework_Testcase
             ),
         );
         $this->assertEquals($expected, $this->files->logo());
+    }
+
+    public function testProjectImages()
+    {
+        $expected = array(
+            'zip' => array(
+                'path' => 'game_1/images/images.zip',
+                'filesize' => '525KB',
+            ),
+            'images' => array(
+                'game_1/images/4415044023_dac059fd3c_o.jpg',
+                'game_1/images/hood_13746h.jpg',
+            ),
+        );
+        $this->assertEquals($expected, $this->files->images('game_1'));
+    }
+
+    public function testProjectLogo()
+    {
+        $expected = array(
+            'zip' => array(
+                'path' => 'game_1/images/logo.zip',
+                'filesize' => '307KB',
+            ),
+            'images' => array(
+                'game_1/images/logo.png',
+            ),
+        );
+        $this->assertEquals($expected, $this->files->logo('game_1'));
     }
 }
